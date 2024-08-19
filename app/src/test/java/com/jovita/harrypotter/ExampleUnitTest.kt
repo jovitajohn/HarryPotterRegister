@@ -1,4 +1,4 @@
-package com.jovita.myapplication
+package com.jovita.harrypotter
 
 import org.junit.Test
 
