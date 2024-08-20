@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class Wand(
         @SerializedName("wood") var wood   : String? = null,
         @SerializedName("core") var core   : String? = null,
-        @SerializedName("length") var length : Int?    = null
+        @SerializedName("length") var length : Double?    = null
 )
 
-data class Character(
+data class MovieCharacter(
         @SerializedName("id") var id : String? = null,
         @SerializedName("name") var name  : String? = null,
         @SerializedName("alternate_names") var alternateNames  : ArrayList<String> = arrayListOf(),

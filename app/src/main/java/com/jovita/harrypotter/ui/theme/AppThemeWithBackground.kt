@@ -13,7 +13,7 @@ import com.jovita.myapplication.R
 
 
 @Composable
-fun AppThemeWithBackground(content: @Composable () -> Unit) {
+fun AppThemeWithBackground( content: @Composable () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()
         .background(GriffindorGold)) {
         Image(
@@ -25,7 +25,7 @@ fun AppThemeWithBackground(content: @Composable () -> Unit) {
             contentScale = ContentScale.Crop
         )
 
-        // Overlay the content on top of the background image
+        //Main app content
         content()
     }
 }
