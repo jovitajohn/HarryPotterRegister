@@ -91,6 +91,8 @@ fun CharacterRow(character: MovieCharacter, onClick: () -> Unit) {
         Column(modifier = Modifier.weight(1f)) {
             character.name?.let { Text(text = it) }
             character.actor?.let { Text(text = it) }
+            character.species?.let { Text(text = it) }
+
         }
         Box(
             modifier = Modifier

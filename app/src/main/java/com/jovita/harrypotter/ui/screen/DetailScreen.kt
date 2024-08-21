@@ -73,7 +73,7 @@ fun formatDateString(dateString: String): String? {
         val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val date = inputFormat.parse(dateString)
 
-        val outputFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         date?.let { outputFormat.format(it) }
     } catch (e: Exception) {
         e.printStackTrace()
