@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.jovita.harrypotter.model.MovieCharacter
 import com.jovita.harrypotter.viewmodel.MainViewModel
 import java.text.SimpleDateFormat
@@ -34,7 +34,7 @@ fun DetailScreen(characterId: String?, viewModel: MainViewModel) {
                 .padding(16.dp)
         ) {
             Image(
-                painter = rememberAsyncImagePainter(character.image),
+                painter = rememberImagePainter(character.image),
                 contentDescription = character.name,
                 modifier = Modifier
                     .fillMaxWidth()
