@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
@@ -75,7 +76,8 @@ fun SearchBar(searchQuery: TextFieldValue, onSearchQueryChanged: (TextFieldValue
             .fillMaxWidth()
             .padding(16.dp)
             .background(Color.LightGray)
-            .padding(8.dp),
+            .padding(8.dp)
+            .height(20.dp),
         decorationBox = { innerTextField ->
             if (searchQuery.text.isEmpty()) {
                 Text("Search by name or actor", color = Color.Gray)
@@ -87,9 +89,19 @@ fun SearchBar(searchQuery: TextFieldValue, onSearchQueryChanged: (TextFieldValue
 
 @Composable
 fun CharacterList(characters: List<MovieCharacter>, onCharacterClick: (MovieCharacter) -> Unit) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        items(characters) { character ->
-            CharacterRow(character = character, onClick = { onCharacterClick(character) })
+    if(characters.isEmpty()){
+        Text(
+            text = "No data found",
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        )
+    }else {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(characters) { character ->
+                CharacterRow(character = character, onClick = { onCharacterClick(character) })
+            }
         }
     }
 }

@@ -12,14 +12,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -34,58 +37,67 @@ import com.jovita.myapplication.R
 
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
                 val navController = rememberNavController()
-                val viewModel: MainViewModel = viewModel()
-                val currentBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = currentBackStackEntry?.destination?.route
+                MainActivityContent(navController = navController)
+            }
+        }
+    }
+}
 
-                //Setting Top bar
-                var topBarTitle by remember { mutableStateOf(getString(R.string.harry_potter_register)) }
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(
-                                    text = topBarTitle,
-                                    color = Color.White,
-                                    modifier = Modifier.fillMaxWidth(),
-                                    textAlign = TextAlign.Center,
-                                    style = MaterialTheme.typography.headlineMedium
-                                )
-                            },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = Griffindor
-                            )
-                        )
-                    }
-                ) { paddingValues ->
-                    AppThemeWithBackground {
-                        NavHost(
-                            navController = navController,
-                            startDestination = "main",
-                            modifier = Modifier.padding(paddingValues)
-                        ) {
-                            //Main screen
-                            composable("main") {
-                                topBarTitle = getString(R.string.harry_potter_register)
-                                ListingScreen(navController = navController, viewModel = viewModel)
-                            }
-                            //Listing screen
-                            composable("detail/{characterId}") { backStackEntry ->
-                                val characterId = backStackEntry.arguments?.getString("characterId")
-                                characterId?.let {topBarTitle=
-                                    viewModel.getCharacterName(characterId).toString()
-                                }?: run { topBarTitle = getString(R.string.detail_screen_title) }
-                                DetailScreen(characterId = characterId, viewModel = viewModel)
-                            }
-                        }
-                    }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MainActivityContent(navController: NavHostController) {
+    //val navController = rememberNavController()
+    val viewModel: MainViewModel = viewModel()
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
+    val appName = stringResource(id = R.string.harry_potter_register)
+    val detailScreenName = stringResource(id = R.string.detail_screen_title)
+    //Setting Top bar
+    var topBarTitle by remember { mutableStateOf(appName) }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = topBarTitle,
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.headlineMedium
+                    )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Griffindor
+                )
+            )
+        }
+    ) { paddingValues ->
+        AppThemeWithBackground {
+            NavHost(
+                navController = navController,
+                startDestination = "main",
+                modifier = Modifier.padding(paddingValues)
+            ) {
+                //Main screen
+                composable("main") {
+                    topBarTitle = appName
+                    ListingScreen(navController = navController, viewModel = viewModel)
+                }
+                //Listing screen
+                composable("detail/{characterId}") { backStackEntry ->
+                    val characterId = backStackEntry.arguments?.getString("characterId")
+                    characterId?.let {
+                        topBarTitle =
+                            viewModel.getCharacterName(characterId).toString()
+                    } ?: run { topBarTitle = detailScreenName }
+                    DetailScreen(characterId = characterId, viewModel = viewModel)
                 }
             }
         }

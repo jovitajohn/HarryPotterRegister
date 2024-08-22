@@ -64,4 +64,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return currentCharacter?.name
     }
 
+    fun getCharacterById(id: String){
+        //can be used to call seperate API to get single charater incase of bulk data
+    }
+
 }
