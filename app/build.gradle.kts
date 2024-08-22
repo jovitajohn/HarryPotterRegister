@@ -65,6 +65,18 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.coil)
     implementation(libs.coil.compose)
+    implementation(libs.androidx.ui.test.junit4.android)
+
+    // Unit Testing
+    testImplementation(libs.mockitoCore)
+    testImplementation(libs.mockitoKotlin)
+    testImplementation(libs.archCoreTesting)
+    testImplementation(libs.coroutinesTest)
+
+    // Instrumented Testing
+    androidTestImplementation(libs.composeUiTestJunit4)
+    debugImplementation(libs.composeUiTooling)
+    androidTestImplementation(libs.okhttpMockWebServer)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

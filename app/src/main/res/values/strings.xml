@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Harry Potter Register</string>
+    <string name="harry_potter_register">Harry Potter Register</string>
+    <string name="detail_screen_title">Character Details</string>
 </resources>

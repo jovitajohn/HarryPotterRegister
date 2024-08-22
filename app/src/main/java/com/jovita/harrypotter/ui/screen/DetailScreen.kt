@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -88,7 +89,7 @@ fun DetailScreen(characterId: String?, viewModel: MainViewModel) {
             ) {
                 Row {
                     Column(modifier = Modifier.weight(1f).padding(20.dp)){
-                        character.name?.let { Text(text = it) }
+                        character.name?.let { Text(text = it,fontWeight = FontWeight.Bold) }
                         Text(text = "Actor: ${character.actor}")
                         Text(text = "Species: ${character.species}")
                         Text(text = "House: ${character.house ?: "Unknown"}")

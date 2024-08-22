@@ -59,4 +59,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         _filteredCharacters.value = filteredList
     }
 
+    fun getCharacterName( id: String): String? {
+        val currentCharacter = characters.value.find { it.id == id }
+        return currentCharacter?.name
+    }
+
 }

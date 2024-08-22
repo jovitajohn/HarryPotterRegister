@@ -13,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -27,6 +30,7 @@ import com.jovita.harrypotter.ui.theme.AppThemeWithBackground
 import com.jovita.harrypotter.ui.theme.Griffindor
 import com.jovita.harrypotter.ui.theme.MyApplicationTheme
 import com.jovita.harrypotter.viewmodel.MainViewModel
+import com.jovita.myapplication.R
 
 
 class MainActivity : ComponentActivity() {
@@ -41,17 +45,14 @@ class MainActivity : ComponentActivity() {
                 val currentBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = currentBackStackEntry?.destination?.route
 
-                //Setting Topbar
+                //Setting Top bar
+                var topBarTitle by remember { mutableStateOf(getString(R.string.harry_potter_register)) }
                 Scaffold(
                     topBar = {
                         TopAppBar(
                             title = {
                                 Text(
-                                    text = when (currentRoute) {
-                                        "main" -> "Harry Potter Register"
-                                        "detail/{characterId}" -> "Character Details"
-                                        else -> "Harry Potter App"
-                                    },
+                                    text = topBarTitle,
                                     color = Color.White,
                                     modifier = Modifier.fillMaxWidth(),
                                     textAlign = TextAlign.Center,
@@ -72,12 +73,15 @@ class MainActivity : ComponentActivity() {
                         ) {
                             //Main screen
                             composable("main") {
-                                val test: String
+                                topBarTitle = getString(R.string.harry_potter_register)
                                 ListingScreen(navController = navController, viewModel = viewModel)
                             }
                             //Listing screen
                             composable("detail/{characterId}") { backStackEntry ->
                                 val characterId = backStackEntry.arguments?.getString("characterId")
+                                characterId?.let {topBarTitle=
+                                    viewModel.getCharacterName(characterId).toString()
+                                }?: run { topBarTitle = getString(R.string.detail_screen_title) }
                                 DetailScreen(characterId = characterId, viewModel = viewModel)
                             }
                         }
