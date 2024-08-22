@@ -1,5 +1,8 @@
 # Harry Potter Register
 
+![HarryPotterRegister](https://github.com/user-attachments/assets/d2bc2c20-4933-4965-9e61-73c4f8f10d0d)
+
+
 ## Overview
 
 The Harry Potter Register is an Android application developed using Jetpack Compose and other modern Android libraries. 
