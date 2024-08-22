@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -47,13 +48,14 @@ class MainActivity : ComponentActivity() {
                             title = {
                                 Text(
                                     text = when (currentRoute) {
-                                        "main" -> "Harry Potter Characters"
-                                        "detail/{characterName}" -> "Character Details"
+                                        "main" -> "Harry Potter Register"
+                                        "detail/{characterId}" -> "Character Details"
                                         else -> "Harry Potter App"
                                     },
                                     color = Color.White,
                                     modifier = Modifier.fillMaxWidth(),
-                                    textAlign = TextAlign.Center
+                                    textAlign = TextAlign.Center,
+                                    style = MaterialTheme.typography.headlineMedium
                                 )
                             },
                             colors = TopAppBarDefaults.topAppBarColors(

@@ -23,3 +23,6 @@ val Hufflepuff = Color(0xFFeeb939)
 val HufflepuffBrown = Color(0xFF372e29)
 
 val Background = Color(0xFF)
+val ListCardColor = Color(0xFFEEE7D1)
+
+val NoHouse = Color(0xFFFFFFFF)

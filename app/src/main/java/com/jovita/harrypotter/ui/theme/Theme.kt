@@ -51,7 +51,7 @@ fun MyApplicationTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = HarryPotterTypography,
         content = content
     )
 }

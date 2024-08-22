@@ -2,9 +2,11 @@ package com.jovita.harrypotter.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.jovita.myapplication.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -31,4 +33,24 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+val harryPotterFont = FontFamily(
+    Font(R.font.harry_potter,FontWeight.Normal),
+)
+val HarryPotterTypography = Typography(
+    headlineMedium = TextStyle(
+        fontFamily = harryPotterFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 40.sp,
+        lineHeight = 60.sp,
+        letterSpacing = 0.5.sp
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
+    )
+
 )
